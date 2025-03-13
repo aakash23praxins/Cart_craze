@@ -9,7 +9,7 @@
     tools:context=".views.CategoryItemActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainRecyclerView"
+        android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

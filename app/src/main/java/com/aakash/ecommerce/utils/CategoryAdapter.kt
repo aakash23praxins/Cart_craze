@@ -32,7 +32,9 @@ class CategoryAdapter(
         holder.catName.text = category.catName
         Glide.with(holder.itemView.context).load(category.catImage).into(holder.cateImg)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, CategoryItemActivity::class.java)
+            val intent = Intent(context, CategoryItemActivity::class.java).apply {
+                putExtra("catName", category.catName)
+            }
             context.startActivity(intent)
         }
     }

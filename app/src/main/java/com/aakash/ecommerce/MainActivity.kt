@@ -1,6 +1,7 @@
 package com.aakash.ecommerce
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,8 +25,12 @@ class MainActivity : AppCompatActivity() {
         adapter = CategoryAdapter(this)
         binding.mainRecyclerView.layoutManager = GridLayoutManager(this, 2)
         viewmodel.fetchLiveData().observe(this) { categoryList ->
-            adapter.submitList(categoryList)
-            binding.mainRecyclerView.adapter = adapter
+            if (categoryList.isNotEmpty()) {
+                adapter.submitList(categoryList)
+                binding.mainRecyclerView.adapter = adapter
+            } else {
+                Log.d("CategoryList", "Does not have Category Data!!")
+            }
         }
     }
 }
