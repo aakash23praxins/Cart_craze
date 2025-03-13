@@ -44,7 +44,7 @@ class CategoryRepository @Inject constructor(
             .addOnSuccessListener { documents ->
                 val products = documents.map { document ->
                     Products(
-                        id = document.id,
+                        id = 0,
                         productName = document.getString("title") ?: "",
                         productPrice = document.getDouble("price") ?: 0.0,
                         productImageUrl = document.getString("imageUrl") ?: ""
