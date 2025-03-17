@@ -13,7 +13,7 @@ interface CartDao {
     suspend fun insertItem(product: Products)
 
     @Query("select * from cart")
-    fun getAllItems(): List<Products>
+    suspend fun getAllItems(): List<Products>
 
     @Query("delete from cart where id = :productID")
     suspend fun deleteProductId(productID: String)

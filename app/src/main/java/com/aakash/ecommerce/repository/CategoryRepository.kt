@@ -2,13 +2,15 @@ package com.aakash.ecommerce.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.aakash.ecommerce.R
+import com.aakash.ecommerce.database.CartDao
 import com.aakash.ecommerce.model.Category
 import com.aakash.ecommerce.model.Products
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
 class CategoryRepository @Inject constructor(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    private val cartDao: CartDao
 ) {
 
     fun fetchData(): MutableLiveData<List<Category>> {
@@ -53,5 +55,21 @@ class CategoryRepository @Inject constructor(
                 productList.postValue(products)
             }
         return productList
+    }
+
+    suspend fun insertItem(products: Products) {
+        cartDao.insertItem(products)
+    }
+
+    suspend fun getAllItems(): List<Products> {
+        return cartDao.getAllItems()
+    }
+
+    suspend fun deleteProductById(id: String) {
+        cartDao.deleteProductId(id)
+    }
+
+    suspend fun clearCart() {
+        cartDao.clearCart()
     }
 }

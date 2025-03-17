@@ -2,14 +2,21 @@ package com.aakash.ecommerce.views
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.aakash.ecommerce.databinding.ActivityProductDetailBinding
 import com.aakash.ecommerce.model.Products
+import com.aakash.ecommerce.viewmodel.CategoryViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductDetailBinding
+
+    private val viewModel:CategoryViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
@@ -26,9 +33,10 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun addToCartData(product: Products) {
+        viewModel.insertData(product)
         Snackbar.make(
             binding.productDetail,
-            "Product ${product.productName} is added to cart!!",
+            "${product.productName} is added to cart!!",
             Snackbar.LENGTH_SHORT
         ).show()
     }

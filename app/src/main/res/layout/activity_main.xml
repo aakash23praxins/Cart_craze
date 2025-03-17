@@ -40,6 +40,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/rounded"
         android:padding="9dp"
+        android:elevation="4dp"
         android:src="@drawable/ic_cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
